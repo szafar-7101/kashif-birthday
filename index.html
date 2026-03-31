@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Kashif Bhaiya 🎉</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(180deg, #87ceeb 0%, #b8ecff 65%, #9be37d 65%, #6ecb63 100%);
+      font-family: Arial, sans-serif;
+      position: relative;
+    }
+
+    .duck-container {
+      position: absolute;
+      bottom: 80px;
+      left: -250px;
+      display: flex;
+      align-items: flex-start;
+      animation: walkIn 6s forwards ease-in-out;
+    }
+
+    @keyframes walkIn {
+      0% {
+        left: -250px;
+      }
+      100% {
+        left: calc(50% - 140px);
+      }
+    }
+
+    .balloon {
+      width: 90px;
+      height: 110px;
+      background: radial-gradient(circle at 30% 30%, #ff9cf3, #ff1493);
+      border-radius: 50%;
+      position: relative;
+      margin-right: 10px;
+      animation: float 1s infinite alternate ease-in-out;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 90px;
+      background: white;
+      left: 50%;
+      top: 100%;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    .duck {
+      font-size: 130px;
+      transform: scaleX(-1);
+      animation: waddle 0.4s infinite alternate;
+    }
+
+    @keyframes waddle {
+      from { transform: scaleX(-1) rotate(-4deg); }
+      to { transform: scaleX(-1) rotate(4deg); }
+    }
+
+    .celebration {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      text-align: center;
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    .celebration.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .photo {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 8px solid white;
+      box-shadow: 0 0 30px rgba(255,255,255,0.8);
+      margin-bottom: 20px;
+      background: white;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      color: white;
+      text-shadow: 0 0 15px #ff1493, 0 0 25px #ff1493;
+      animation: pulse 1s infinite alternate;
+      padding: 0 20px;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    .pop {
+      position: absolute;
+      font-size: 100px;
+      color: white;
+      left: 50%;
+      top: 30%;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+
+    .pop.show {
+      animation: popAnim 0.8s forwards;
+    }
+
+    @keyframes popAnim {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) scale(0.5);
+      }
+      50% {
+        transform: translateX(-50%) scale(1.4);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(1);
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      top: -20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="duck-container" id="duckContainer">
+    <div class="balloon" id="balloon"></div>
+    <div class="duck">🦆</div>
+  </div>
+
+  <div class="pop" id="pop">💥</div>
+
+  <div class="celebration" id="celebration">
+    <!-- Replace the image URL below with Kashif Bhaiya's photo -->
+    <img
+      class="photo"
+      src="https://codepen.io/szafar-7101/pen/YPGaMwV"
+      alt="Kashif Bhaiya"
+    />
+
+    <h1>Happy Birthday Kashif Bhaiya! 🎉</h1>
+  </div>
+
+  <script>
+    const balloon = document.getElementById('balloon');
+    const celebration = document.getElementById('celebration');
+    const pop = document.getElementById('pop');
+
+    setTimeout(() => {
+      balloon.style.display = 'none';
+      pop.classList.add('show');
+
+      setTimeout(() => {
+        celebration.classList.add('show');
+        createConfetti();
+      }, 500);
+    }, 6000);
+
+    function createConfetti() {
+      const colors = ['#ff1493', '#ffd700', '#00e5ff', '#7c4dff', '#00ff7f'];
+
+      for (let i = 0; i < 120; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = 3 + Math.random() * 3 + 's';
+        confetti.style.animationDelay = Math.random() * 1 + 's';
+        document.body.appendChild(confetti);
+      }
+    }
+  </script>
+
+</body>
+</html>
